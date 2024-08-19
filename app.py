@@ -9,6 +9,11 @@ def load_lottieurl(url):
     if r.status_code != 200:
         return None
     return r.json()
+def local_css(file_name):
+     with open(file_name) as f:
+            st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+local_css("style.css")
+     
 lottie_coding = load_lottieurl("https://lottie.host/3d8eda2f-c9b8-47a2-803f-ab998db7faa4/TP1z0SoB4m.json")
 img_arcade = Image.open("img_arcadeAPI.png")
 img_files = Image.open("img_fileOrganizer.png")
@@ -65,24 +70,27 @@ with st.container():
  """
                 )
 #Contact
-with st.container:
+with st.container():
     st.write("---")
     st.header("Let's get in touch")
+    st.write("If you are working on a project and you need help with a part of it, or if you want to talk about a something just send me an message through my Instagram or this form, i'll answer you back in some hours, Maximum 2 days")
     st.write("##")
     contact_form = """
     <form action="https://formsubmit.co/contact@rayane.tech" method="POST">
         <input type="text" name="name"  placeholder = "Your Name" required>
         <input type="email" name="email" placeholder = "Your Email Address" required>
-        <input textarea name="message" placeholder ="Your Message Here" require>
-        <input name="hidden" name="_captcha" value="false">
-        <button type="submit">Send</button>
+        <textarea name="message" placeholder ="Your Message Here" require></textarea>
+        <input type="hidden" name="_captcha" value="false">
+        <div class="button_container">
+            <button type="submit">Send</button>
+        </div>
     </form>
 
 """
-    left_column, right_column = st.columns(2)
-    with left_column:
+left_column, right_column = st.columns(2)
+with left_column:
         st.markdown(contact_form, unsafe_allow_html=True)
-    with right_column:
+with right_column:
         st.empty()
 
 
