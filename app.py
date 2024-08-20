@@ -1,9 +1,18 @@
 from PIL import Image
 import streamlit as st
+from st_social_media_links import SocialMediaIcons
 import requests
 from streamlit_lottie import st_lottie
 
-st.set_page_config(page_title="My Website", page_icon=":tada:", layout="wide")  
+st.set_page_config(page_title="My Website", page_icon="💻", layout="wide")  
+
+social_media_links = [
+     "https://instagram.com/rayan_jpg",
+     "https://github.com/Rayanlupo"
+     "x.com/G_rayan21"
+]
+social_media_icons = SocialMediaIcons(social_media_links)
+
 def load_lottieurl(url):
     r = requests.get(url)
     if r.status_code != 200:
@@ -20,28 +29,25 @@ img_files = Image.open("img_fileOrganizer.png")
 with st.container():
     st.subheader("Hi, I'm Rayan")
     st.title("a Python Developer and Hardare Prototyper")
-    st.write("I use my python skills to work on data management, automations and Back-end development")
-    st.write("i use my CAD designing and Electronic circuits skills to protype products as my business card holder or my powerpoint remote")
-    st.write("[Instagram](instagram.com/rayan_jpg)")
+    
 
 with st.container():
     st.write("---")
     left_column, right_column = st.columns(2)
     with left_column:
         st.header("My skills")
-        st.write("##")
+
         st.subheader("Hardare Designing and Prototyping")
-        st.write("""
-        -Fusion360 # 
-        -PCB design #
-        """)
+        st.write("- Fusion360") 
+        st.write("- PCB design") 
+        
         st.subheader("Python Development")
-        st.write("""
-        -Data Managent.
-        -Automations.
-        -Back-end Development.  
-        """)
+        st.write("- Data Management")
+        st.write("- Task Automation")
+        st.write("- Back-end Development")  
+        
     with right_column:
+        st.write("##")
         st_lottie(lottie_coding, height=300, key="coding")
 
 with st.container():
@@ -72,8 +78,7 @@ with st.container():
 #Contact
 with st.container():
     st.write("---")
-    st.header("Let's get in touch")
-    st.write("If you are working on a project and you need help with a part of it, or if you want to talk about a something just send me an message through my Instagram or this form, i'll answer you back in some hours, Maximum 2 days")
+    
     st.write("##")
     contact_form = """
     <form action="https://formsubmit.co/contact@rayane.tech" method="POST">
@@ -89,9 +94,11 @@ with st.container():
 """
 left_column, right_column = st.columns(2)
 with left_column:
-        st.markdown(contact_form, unsafe_allow_html=True)
+    st.header("Let's get in touch")
+    st.write("If you are working on a project and you need help with a part of it, or if you want to talk about a something just send me an message through my Instagram or this form, i'll answer you back in some hours, Maximum 2 days")
+    social_media_icons.render()
 with right_column:
-        st.empty()
+       st.markdown(contact_form, unsafe_allow_html=True)
 
 
 
